@@ -3,7 +3,7 @@ function aleatorio(min, max) {
 }
 
 function eleccion(jugada) {
-    let resultado = ""; 
+    let resultado = "";
     if (jugada == 1) {
         resultado = 'Piedra 🥌';
     } else if (jugada == 2) {
@@ -17,21 +17,32 @@ function eleccion(jugada) {
 }
 
 let jugador = 0;
-let pc = aleatorio(1, 3);
-jugador = prompt("Elige: \n1.Piedra 🥌 \n2.Papel📖 \n3.Tijera✂");
+let pc = 0;
+let triunfos = 0;
+let perdidas = 0;
 
-alert(`PC elige: ${eleccion(pc)}`);
-alert(`Tu elijes: ${eleccion(jugador)}`)
+while (triunfos < 3 && perdidas < 3) {
+    pc = aleatorio(1, 3);
+    jugador = prompt("Elige: \n1.Piedra 🥌 \n2.Papel📖 \n3.Tijera✂");
 
-//Combate
-if(pc == jugador){
-    alert('Empate✅')
-}else if(jugador == 1 && pc == 3){
-    alert('Ganaste!🏆');
-}else if(jugador == 2 && pc == 1){
-    alert('Ganaste!🏆');
-}else if(jugador == 3 && pc == 2){
-    alert('Ganaste!🏆');
-}else{
-    alert('Perdiste😫');
+    alert(`PC elige: ${eleccion(pc)}`);
+    alert(`Tu elijes: ${eleccion(jugador)}`)
+
+    //Combate
+    if (pc == jugador) {
+        alert('Empate✅')
+    } else if (jugador == 1 && pc == 3) {
+        triunfos = triunfos + 1;
+        alert('Ganaste!🏆');
+    } else if (jugador == 2 && pc == 1) {
+        triunfos = triunfos + 1;
+        alert('Ganaste!🏆');
+    } else if (jugador == 3 && pc == 2) {
+        triunfos = triunfos + 1;
+        alert('Ganaste!🏆');
+    } else {
+        perdidas = perdidas + 1;
+        alert('Perdiste😫');
+    }
 }
+alert(`Ganaste ${triunfos} veces🏆 \nPerdiste ${perdidas} veces❌` );
